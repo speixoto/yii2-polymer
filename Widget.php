@@ -21,6 +21,6 @@ class Widget extends \yii\base\Widget
     public function init()
     {
         $view = $this->getView();
-        $this->_assetBundle = PolymerPluginAsset::register($view);
+        $this->_assetBundle = PolymerAsset::register($view);
     }
 }

@@ -48,9 +48,6 @@ class HeaderPanel extends Widget
         $link = $this->_assetBundle->link;
         $link[] = 'bower_components/core-header-panel/core-header-panel.html';
         $this->_assetBundle->link = $link;
-        $css = $this->_assetBundle->css;
-        $css[] ='bower_components/core-header-panel/core-header-panel.css';
-        $this->_assetBundle->css = $css;
         $options = $this->options;
         if ($this->mode) {
             $options['mode'] = $this->mode;

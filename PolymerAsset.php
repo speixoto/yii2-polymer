@@ -14,8 +14,9 @@ use yii\helpers\Url;
  */
 class PolymerAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/speixoto/polymer/assets';
-    public $js = ['bower_components/plataform/platform.js'];
+    public $sourcePath = '@speixoto/polymer/assets';
+    public $js = ['bower_components/platform/platform.js'];
+    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
     public $link = [];
 
     public function registerAssetFiles($view)
@@ -23,7 +24,11 @@ class PolymerAsset extends AssetBundle
         foreach ($this->link as $link) {
             $options = [];
             $options['rel'] = 'import';
-            $options['href'] = Url::to($link);
+            if ($link[0] !== '/' && $link[0] !== '.' && strpos($link, '://') === false) {
+                $options['href'] = Url::to($this->baseUrl . '/' . $link);
+            } else {
+                $options['href'] = Url::to($link);
+            }
             $view->registerLinkTag($options);
         }
         parent::registerAssetFiles($view);
